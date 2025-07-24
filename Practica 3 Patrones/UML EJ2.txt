@@ -1,0 +1,39 @@
+@startuml
+abstract class Empleado {
+-sueldo:Real
+#<<abstract>> adicional():Real
+#montoPorHijo():Real
+#montoPorAnioAntiguedad():Real
+#montoPorCasado():Real
+#montoPorExamen():Real
+-descuentoAdicional():Real
+-descuentoSueldo():Real
+-montoDescuentoSueldo():Real
+-montoDescuentoAdicional():Real
++sueldo():Real
+}
+
+class Planta extends Empleado{
+-casado:Boolean
+-cantHijos:Integer
+-aniosAntiguedad:Integer
++getAdicional():Real
+-estaCasado():Boolean
+}
+
+class Temporario extends Empleado{
+-horasTrabajadas:Integer
+-casado:Boolean
+-cantHijos:Integer
++adicional():Real
+-estaCasado():Boolean
++getSueldo():Real
+-montoPorHora():Real
+}
+
+class Pasante extends Empleado{
+-examenesRendidos:Integer
++adicional():Real
+}
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+class Pedido{
++<<create>> Pedido(cliente:Cliente,productos:List<Producto>,formaPago:FormaDePago)
++descuentoSiClienteMayorACincoAños(costoProductos:double, extraFormaPago:double):double
++getCostoTotal():double
+}
+class Cliente{
+-fechaAlta:LocalDate
++obtenerAntiguedad():integer
+}
+interface FormaDePago{
++extraFormaDePago(costoProductos:double):double
+}
+class SeisCuotas implements FormaDePago{
+}
+class Efectivo implements FormaDePago{
+}
+class DoceCuotas implements FormaDePago{
+}
+
+class Producto{
+-precio:double
+}
+Pedido "productos" --> Producto
+Pedido "cliente" --> Cliente
+Pedido "formaPago" --> FormaDePago
+@enduml

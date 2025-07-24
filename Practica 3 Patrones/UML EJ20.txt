@@ -1,0 +1,121 @@
+@startuml
+class Personaje {
+-nombre:String
+-armadura:Armadura
+-arma:Arma
+-habilidad:String
+-vida:Integer
++combateContra(p2:Personaje):String
++puedeParticiapar():Boolean
++getArma():Arma
++getArmadura():Armadura
++getHabilidad():String
++getNombre():String
++setArma(arma:Arma)
++setArmadura(armadura:Armadura)
++setHabilidad(habilidad:String)
++setNombre(nombre:String)
++getVida():Integer
+}
+
+abstract Armadura{
++<<create>>Armadura()
++recibirDaño(arma:Arma)
++<abstract> recibirEspada():Integer
++<abstract> recibirArco():Integer
++<abstract> recibirBaston():Integer
+}
+
+interface Arma{
++atacar(armadura:Armadura)
+}
+
+class Espada implements Arma{
++<<create>>Espada()
++atacar(armadura:Armadura):Integer
+}
+
+class Arco implements Arma{
++<<create>>Arco()
++atacar(armadura:Armadura):Integer
+}
+
+class Baston implements Arma{
++<<create>>Baston()
++atacar(armadura:Armadura):Integer
+}
+
+class Cuero extends Armadura{
++<<create>>Cuero()
++recibirEspada():Integer
++recibirArco():Integer
++recibirBaston():Integer
+}
+
+class Hierro extends Armadura{
++<<create>>Hierro()
++recibirEspada():Integer
++recibirArco():Integer
++recibirBaston():Integer
+}
+
+class Acero extends Armadura{
++<<create>>Acero()
++recibirEspada():Integer
++recibirArco():Integer
++recibirBaston():Integer
+}
+
+class Juego{
+
+-builder:PersonajeBuilder
++<<create>>Juego()
++contruirPersonaje():Personaje
++setBuilder(builder:PersonajeBuilder)
+}
+
+interface PersonajeBuilder{
++buildNombre(nombre:String)
++buildArma()
++buildArmadura()
++buildHabilidad()
++getResultado():Personaje
+}
+
+class GuerreroBuilder implements PersonajeBuilder{
+-guerrero:Personaje
++<<create>>GuerreroBuilder()
++buildNombre(nombre:String)
++buildArma()
++buildArmadura()
++buildHabilidad()
++getResultado():Personaje
+}
+
+class MagoBuilder implements PersonajeBuilder{
+-mago:Personaje
++<<create>>MagoBuilder()
++buildNombre(nombre:String)
++buildArma()
++buildArmadura()
++buildHabilidad()
++getResultado():Personaje
+}
+
+class ArqueroBuilder implements PersonajeBuilder{
+-arquero:Personaje
++<<create>>ArqueroBuilder()
++buildNombre(nombre:String)
++buildArma()
++buildArmadura()
++buildHabilidad()
++getResultado():Personaje
+}
+
+GuerreroBuilder "guerrero"--> Personaje
+ArqueroBuilder "arquero"--> Personaje
+MagoBuilder "mago"--> Personaje
+Juego "builder" -> PersonajeBuilder 
+Personaje "armadura"-> Armadura
+Arma <- "arma" Personaje
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+class Llamada{
+-tipoLlamada:String
+-origen:String
+-destino:String
+-durecion:Integer
++<<create>>Llamada(tipoLlamada:String,origen:String,destino:String,durecion:Integer)
++getTipoDeLlamada():String
++getRemitente():String
++getDuracion():Integer
++getOrigen():String
+}
+
+class Empresa{
+-clientes:Cliente[*]
+-llamadas:Llamada[*]
+-guía:GestorNumerosDisponibles
+-static descuentoJur:Real
+-static descuentoFis:Real
++agregarNumeroTelefono(str:String):Boolean
++obtenerNumeroLibre():String
++registrarUsuario(data:String,nombre:String,tipo:String):Cliente
++registrarLlamada(origen:Cliente,destino:Cliente,t:String,durecion:Integer):Llamada
++calcularMontoTotalLlamadas(cliente:Cliente):Real
++cantidadDeUsuarios():Integer
++existeUsuario(persona:Cliente):Boolean
++getGestorNumeros():GestorNumerosDisponibles
+}
+
+class GestorNumerosDisponibles{
+-líneas:String[*]
+-tipoGenerador:String
++getLineas()
++obtenerNumeroLibre():String
++cambiarTipoGenerador(valor:String)
+}
+
+class Cliente{
+-llamadas:Llamada[*]
+-tipo:String
+-nombre:String
+-numeroTelefono:String
+-cuit:String
+-dni:String
++getTipo():String
++getNombre():String
++getNumeroTelefono():String
++getCuit():String
++getDni():String
++setTipo(tipo:String)
++setNombre(nombre:String)
++setNumeroTelefono(dni:String)
+}
+Cliente "llamadas *" --> Llamada
+Empresa "clientes *"-> Cliente
+Empresa "llamadas  *"--> Llamada
+Empresa "guia"--> GestorNumerosDisponibles  
+
+@enduml

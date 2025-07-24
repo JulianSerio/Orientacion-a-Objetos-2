@@ -1,0 +1,36 @@
+@startuml
+class Mamifero{
+-identificador:String
+-especie:String
+-fechaNacimiento:LocalDate
+-padre:Mamifero
+-madre:Mamifero
++<<create>>Mamifero(id:String)
++setIdentificado(id:String)
++setEspecie(especie:String)
++setFechaNacimiento(fecha:LocalDate)
++setPadre(padre:Mamifero)
++setMadre(madre:Mamifero)
++getIdentificador():String
++getEspecie():String
++getFechaNacimiento():LocalDate
++getPadre():Mamifero
++getMadre():Mamifero
++getAbueloMaterno():Mamifero
++getAbueloPaterno():Mamifero
++getAbuelaMaterna():Mamifero
++getAbuelaPaterna():Mamifero
++tieneComoAncestroA(mamifero:Mamifero):Boolean
+}
+class MamiferoNull extends Mamifero{
+-static final INSTANCIA:MamiferoNull
++getPadre():Mamifero
++getMadre():Mamifero
++getAbueloMaterno():Mamifero
++getAbueloPaterno():Mamifero
++getAbuelaMaterna():Mamifero
++getAbuelaPaterna():Mamifero
++tieneComoAncestroA(mamifero:Mamifero):Boolean
+}
+
+@enduml

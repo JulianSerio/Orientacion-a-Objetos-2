@@ -1,0 +1,85 @@
+@startuml
+class Calculadora{
+-acumulador:Real
++mas()
++menos()
++por()
++dividido()
++setValue(valor:Integer)
++resultado():String
++borrar()
++sumarAcumulador(valor:Real)
++restarAcumulador(valor:Real)
++dividirAcumulador(valor:Real)
++multiplicarAcumulador(valor:Real)
++reiniciarContador()
++getAcumulador():Real
++setEstado(estado:State)
+}
+interface State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+
+class Sumando implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+class Restando implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+class Dividiendo implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+class Multiplicando implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+class Inicial implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+class ErrorState implements State{
++mas(calculadora:Calculadora)
++menos(calculadora:Calculadora)
++por(calculadora:Calculadora)
++dividido(calculadora:Calculadora)
++resultado(calculadora:Calculadora):String
++borrar(calculadora:Calculadora)
++setValue(calcu:Calculadora,value:Real)
+}
+
+Calculadora "estado" --> State
+@enduml

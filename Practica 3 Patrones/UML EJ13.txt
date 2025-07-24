@@ -1,0 +1,71 @@
+@startuml
+class Subteway{
++<<create>>Subway()
++construir():Sandwich
++setBuilder(builder:SandwichBuilder)
+}
+
+class Sandwich{
+-pan:String
+-aderezo:String
+-adicional:String
+-precioPan:Real
+-precioAderezo:Real
+-precioAdicional:Real
++<<create>>Sandwich()
++setPan(pan:String,precio:Real)
++setAdicional(adicional:String,precio:Real)
++setAderezo(aderezo:String,precio:Real)
++getPrecioTotal():Real
+}
+
+interface SandwichBuilder{
++buildPan()
++buildAderezo()
++buildAdicional()
++buildPrincipal()
++getResultado():Sandwich
+}
+
+class Clasico implements SandwichBuilder{
++<<create>>Clasico()
++buildPan()
++buildAderezo()
++buildAdicional()
++buildPrincipal()
++getResultado():Sandwich
+}
+
+class Vegetariano implements SandwichBuilder{
++<<create>>Vegetariano()
++buildPan()
++buildAderezo()
++buildAdicional()
++buildPrincipal()
++getResultado():Sandwich
+}
+
+class SinTacc implements SandwichBuilder{
++<<create>>SinTacc()
++buildPan()
++buildAderezo()
++buildAdicional()
++buildPrincipal()
++getResultado():Sandwich
+}
+
+class Vegano implements SandwichBuilder{
++<<create>>Vegano()
++buildPan()
++buildAderezo()
++buildAdicional()
++buildPrincipal()
++getResultado():Sandwich
+}
+
+SinTacc "sandwich"--> Sandwich
+Vegetariano "sandwich"--> Sandwich
+Clasico "sandwich"--> Sandwich
+Vegano "sandwich"--> Sandwich
+Subteway "builder"-> SandwichBuilder
+@enduml

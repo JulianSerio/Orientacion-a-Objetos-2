@@ -1,0 +1,36 @@
+@startuml
+class Biblioteca {
+-socios:List<Socio>
+-exporter:VoorheesExporter
++agregarSocio(socio:Socio)
++exportarSocios():String
++getExporter():VoorheesExporter
++setExporter(exporter:VoorheesExporter)
+}
+
+class Socio {
+-nombre:String
+-legajo:String
+-email:String
++getNombre():String
++getEmail():String
++getLegajo():String
++setLegajo(legajo:String)
++setNombre(nombre:String)
++setEmail(email:String)
+}
+
+class VoorheesExporter {
+-exportar(socio:Socio):String
++exportar(socios:List<Socio>):String
+}
+
+class JsonExporterAdapter {
+-exportar(socio:Socio):String
++exportar(socios:List<Socio>):String
+}
+
+VoorheesExporter <|-- JsonExporterAdapter
+Biblioteca "1" --> VoorheesExporter
+Biblioteca "socios *" --> Socio
+@enduml

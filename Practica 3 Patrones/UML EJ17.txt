@@ -1,0 +1,23 @@
+@startuml
+
+interface DatabaseAccess{
++insertNewRow(rowData:String[*]):Integer
++getSearchResults(queryString:String):String[*]
+}
+
+class DatabaseRealAccess implements DatabaseAccess{
+-database
++<<create>>DatabaseRealAccess()
++insertNewRow(rowData:String[*]):Integer
++getSearchResults(queryString:String):String[*]
+}
+
+class DatabaseProxy implements DatabaseAccess{
+-realDB:DatabaseRealAccess 
++<<create>>DatabaseProxy()
++insertNewRow(rowData:String[*]):Integer
++getSearchResults(queryString:String):String[*]
+}
+
+DatabaseRealAccess <-"realDB" DatabaseProxy
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+class Decodificador{
++<<create>>Decodificador(grilla:List<Pelicula>,reprodujo:List<Pelicula>,estretegia:Estretegia)
++reproducir(peli:Pelicula)
++recomendarPeliculas():List<Pelicula>
++masRecientes():List<Pelicula>
++masSimilaridad():List<Pelicula>
++masPuntaje():List<Pelicula>
+-peliculaMasReciente():Pelicula
++setEstrategia(e:Estrategia)
++getGrilla():List<Pelicula>
++getReproducidas():List<Pelicula>
+}
+
+interface Estrategia{
++recomendarPeliculas():List<Pelicula>
+}
+
+class Pelicula{
+-titulo:String
+-anioEstreno:LocalDate
+-puntaje:Real
++<<create>> Pelicula (titulo:String,anioEstreno:String,puntaje:Real)
++agregarSimilar()
++esSimilar(peli:Pelicula):Boolean
++getSimilares():List<Pelicula>
++getAnioEstreno():LocalDate
++getPuntaje():Real
+}
+
+class Puntaje implements Estrategia{
++recomendarPeliculas():List<Pelicula>
+}
+class Novedad implements Estrategia{
++recomendarPeliculas():List<Pelicula>
+}
+class Similaridad implements Estrategia{
++recomendarPeliculas():List<Pelicula>
+}
+
+Decodificador "estrategia" -> Estrategia
+Decodificador "reprodujo *" --> Pelicula
+Decodificador "grilla *" --> Pelicula
+Pelicula "pelisSimilares *"--> Pelicula
+@enduml

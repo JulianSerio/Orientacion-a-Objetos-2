@@ -1,0 +1,41 @@
+@startuml
+abstract Bien{
+-liquidez:Real
+<<create>>Bien()
++valorPrendatario():Real 
+#setLiquidez(liquidez:double)
+<<abstract>>#calcularValor():Real
+}
+
+class Automovil extends Bien{
+<<create>>Automovil(modelo:String,kilometraje:Real,costo0Km:Real)
+-modelo:String
+-kilometraje:Real
+-costo0Km:Real
+#calcularValor():Real
+}
+
+class Inmueble extends Bien{
+<<create>>Inmueble(direccion:String,superficie:Real,costoM2:Real)
+-direccion:String
+-superficie:Real
+-costoM2:Real
+#calcularValor():Real
+}
+
+class Alquiler extends Bien{
+<<create>>Alquiler(comienzoContrato:LocalDate,finContrato:LocalDate,costoMensual:Real)
+-comienzoContrato:LocalDate
+-finContrato:LocalDate
+-costoMensual:Real
+#calcularValor():Real
+-mesesQueFaltan():Integer
+}
+
+class BienCombinado extends Bien{
+-bienes:Bienes[*]
+<<create>>BienCombinado(bienes:Bienes[*])
+#calcularValor():Real
+}
+
+@enduml

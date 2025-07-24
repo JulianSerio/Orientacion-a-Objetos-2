@@ -1,0 +1,55 @@
+@startuml
+class Excursion{
+-nombre:String
+-fechaInicio:LocalDate
+-fechaFin:LocalDate
+-puntoEncuentro:String
+-costo:Real
+-cupoMin:Integer
+-cupoMax:Integer
+-inscriptos:List<Usuario>
+-espera:List<Usuario>
++inscribir(usuario:Usuario)
++agregarAInscriptos(usuario:Usuario)
++agregarAEspera(usuario:Usuario)
++obtenerInformacion():String
++obtenerEmails():String
++setEstado(estado:State)
++getInscriptos():List<Usuario>
++getEspera():List<Usuario>
++getMin():Integer
++getMax():Integer
++toString():String
+}
+interface State{
++obtenerInformacion(excursion:Excursion):String
++verificarEstado(excursion:Excursion):Boolean
++inscribir(excursion:Excursion,usuario:Usuario)
+}
+class Provisoria implements State{
++faltan(minimo:Integer,hastaAhora:Integer):Integer
++obtenerInformacion(excursion:Excursion):String
++verificarEstado(excursion:Excursion):Boolean
++inscribir(excursion:Excursion,usuario:Usuario)
+}
+class Definitiva implements State{
++faltan(maximo:Integer,hastaAhora:Integer):Integer
++obtenerInformacion(excursion:Excursion):String
++verificarEstado(excursion:Excursion):Boolean
++inscribir(excursion:Excursion,usuario:Usuario)
+}
+class Maxima implements State{
++obtenerInformacion(excursion:Excursion):String
++verificarEstado(excursion:Excursion):Boolean
++inscribir(excursion:Excursion,usuario:Usuario)
+}
+
+class Usuario{
+-nombre:String
+-apellido:String
+-email:String
+}
+Excursion "inscriptos *" --> Usuario
+Excursion "estado" -> State
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+class FileSystem{
++<<create>>FileSystem(raiz:Directorio)
++tamanoTotalOcupado():Integer
++archivoMasGrande():Archivo
++archivoMasNuevo():Archivo
++buscar(nombre:String):Contenido
++buscarTodos(nombre:String):Contenido[*]
++listadoDeContenido():String
+}
+
+abstract class Contenido{
+-nombre:String
+-fechaCreacion:LocalDate
+-tamano:Integer
++getTamano():Integer
++getNombre():String
++getFechaCreacion():LocalDate
+<abstract>+tamanoTotalOcupado():Integer
+<abstract>+archivoMasGrande():Archivo
+<abstract>+archivoMasNuevo():Archivo
+<abstract>+buscar(nombre:String):Contenido
+<abstract>+buscarTodos(nombre:String):Contenido[*]
+<abstract>+listadoDeContenido():String
+}
+
+class Archivo extends Contenido{
++<<create>>Archivo(nombre:String,fechaCreacion:LocalDate)
++tamanoTotalOcupado():Integer
++archivoMasGrande():Archivo
++archivoMasNuevo():Archivo
++buscar(nombre:String):Contenido
++buscarTodos(nombre:String):Contenido[*]
++listadoDeContenido():String
+}
+
+class Directorio extends Contenido{
++<<create>>Directorio(contiene:Contenido[*]nombre:String,fechaCreacion:LocalDate)
+-contiene:Contenido[*]
++tamanoTotalOcupado():Integer
++archivoMasGrande():Archivo
++archivoMasNuevo():Archivo
++buscar(nombre:String):Contenido
++buscarTodos(nombre:String):Contenido[*]
++listadoDeContenido():String
+}
+Directorio "contenidos *" -> Contenido
+FileSystem "raiz"--> Directorio
+@enduml

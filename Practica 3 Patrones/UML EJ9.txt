@@ -1,0 +1,44 @@
+@startuml
+class Usuario{
+-nombre:String
+}
+
+class AutoEnAlquiler{
+-precioPorDia:Real
+-cantidadPlazas:Integer
+-marca:String
++setPoliticaCancelacion(pol:PoliticaCancelacion)
++getPrecioPorDia()
++montoReembolso(res:Reserva,fechaCancelacion:LocalDate)
+}
+
+class Reserva{
+-cantidadDias:Integer
+-fecha:LocalDate
++montoAPagar():Real
++montoAReembolsar(fechaCancelacion:LocalDate):Real
++getDias():Integer
++semanaAntes(fechaCancelacion:LocalDate):Boolean
++dosDiasAntes(fechaCancelacion:LocalDate):Boolean
+}
+
+interface PoliticaCancelacion{
++montoAReembolsar(res:Reserva,fechaCancelacion:LocalDate):Real
+}
+
+class Flexible implements PoliticaCancelacion{
++montoAReembolsar(res:Reserva,fechaCancelacion:LocalDate):Real
+}
+
+class Estricta implements PoliticaCancelacion{
++montoAReembolsar(res:Reserva,fechaCancelacion:LocalDate):Real
+}
+
+class Moderada implements PoliticaCancelacion{
++montoAReembolsar(res:Reserva,fechaCancelacion:LocalDate):Real
+}
+Reserva "conductor"--> Usuario
+Reserva "auto" --> AutoEnAlquiler
+Usuario "autosEnAlquiler *" --> AutoEnAlquiler 
+AutoEnAlquiler "politica" -> PoliticaCancelacion
+@enduml

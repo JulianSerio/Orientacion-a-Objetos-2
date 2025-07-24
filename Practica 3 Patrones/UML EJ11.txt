@@ -1,0 +1,63 @@
+@startuml
+interface Topografia {
++proporcionAgua():Real
++proporcionTierra():Real
++igual(topografia:Topografia):Boolean
++igualAAgua():Boolean
++igualATierra():Boolean
++igualAPantano():Boolean
++igualAMixta():Boolean
++obtenerTopografia(i:Integer):Topografia
+}
+
+class Agua implements Topografia {
++<<create>>Agua()
++proporcionAgua():Real
++proporcionTierra():Real
++igual(topografia:Topografia):Boolean
++igualAAgua():Boolean
++igualATierra():Boolean
++igualAPantano():Boolean
++igualAMixta():Boolean
++obtenerTopografia(i:Integer):Topografia
+}
+
+class Tierra implements Topografia{
++<<create>>Tierra()
++proporcionAgua():Real
++proporcionTierra():Real
++igual(topografia:Topografia):Boolean
++igualAAgua():Boolean
++igualATierra():Boolean
++igualAPantano():Boolean
++igualAMixta():Boolean
++obtenerTopografia(i:Integer):Topografia
+}
+
+class Pantano implements Topografia{
++<<create>>Tierra()
++proporcionAgua():Real
++proporcionTierra():Real
++igual(topografia:Topografia):Boolean
++igualAAgua():Boolean
++igualATierra():Boolean
++igualAPantano():Boolean
++igualAMixta():Boolean
++obtenerTopografia(i:Integer):Topografia
+}
+
+class Mixta implements Topografia{
+-topografias:List<Topografias>
++<<create>>Mixta(t1:Topografia,t2:Topografia,t3:Topografia,t4:Topografia)
++proporcionAgua():Real
++proporcionTierra():Real
++get(index:Integer):Topografia
++igual(topografia:Topografia):Boolean
++igualAAgua():Boolean
++igualATierra():Boolean
++igualAPantano():Boolean
++igualAMixta():Boolean
++obtenerTopografia(i:Integer):Topografia
+}
+Mixta "topografias *" --> Topografia
+@enduml

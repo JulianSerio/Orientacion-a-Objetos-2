@@ -1,0 +1,51 @@
+@startuml
+interface WeatherData{
++getTemperatura():Real
++getPresion():Real
++getRadiacionSolar():Real
++displayData():String
++getTemperatura():Real[*]
+}
+
+class HomeWeatherStation implements WeatherData{
++getPresion():Real
++getTemperatura():Real
++getRadiacionSolar():Real
++getTemperatura():Real[*]
++displayData():String
+}
+
+abstract WeatherDataDecorator implements WeatherData{
+-component:WeatherData
++getTemperatura():Real
++getPresion():Real
++getRadiacionSolar():Real
++getTemperatura():Real[*]
++displayData():String
+<<>>#abstract decoracion()
+}
+
+class PromedioHistoricoDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+
+class MaxDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+
+class MinDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+
+class TemperaturaCelciusDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+
+class PresionDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+
+class RadiacionDecorator extends WeatherDataDecorator{
+#decoracion():String
+}
+@enduml

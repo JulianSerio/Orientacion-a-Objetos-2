@@ -1,0 +1,38 @@
+@startuml
+class Twitter{
+-usuarios: List<Usuario>
++AgregarUsuario() 
++EliminarUsuario(nombre:String)
++getUsuarios():List<Usuario>
++usuarioNoExiste(nombreABuscar:String):boolean
+}
+
+class Usuario {
+-screenName: String
+-tweets: List<Tweet>
++EliminarTweets()
++Tweetear()
++Retweetear(tweet:Tweet)
++SonIguales(nombreABuscar:String):boolean
++getTweets():List<Tweet>
++conozcoAEsteTweet(tweet:Tweet):boolean
+}
+
+interface Tweet {
++conozcoAEsteUsuario(u:Usuario):boolean
+}
+
+class Retweet extends Tweet{
+-origen: Tweet
+}
+
+class TweetConTexto extends Tweet{
+-texto: String
++escribirTweet(texto:String)
++VerificarTweet():boolean
+}
+
+
+@enduml
+Twitter "0..*" --> Usuario
+Usuario "0..*" --> Tweet

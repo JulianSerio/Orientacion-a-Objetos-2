@@ -1,0 +1,72 @@
+@startuml
+class FileManager{
++mostarArchivo(file:FileComponent):String
+}
+
+interface FileComponent{
++prettyPrint():String
++getNombre():String
++getExtencion():String
++getTamano():Real
++getFechaCreacion():String
++getFechaModificacion():String
++getPermisos():String
+}
+
+class FileOO2 implements FileComponent{
+-nombre:String
+-extencion:String
+-tamano:Real
+-fechaCreacion:String
+-fechaModificacion:String
+-permisos:String
++<<create>>FileOO2 (nombre:String,extencion:String,tamano:Real,fechaCreacion:String,fechaModificacion:String,permisos:String)
++getNombre():String
++getExtencion():String
++getTamano():Real
++getFechaCreacion():String
++getFechaModificacion():String
++getPermisos():String
++prettyPrint():String
+}
+
+abstract FileDecorator implements FileComponent{
+-component:FileComponent
++<<create>>FileDecorator(component:FileComponent)
++getNombre():String
++getExtencion():String
++getTamano():Real
++getFechaCreacion():String
++getFechaModificacion():String
++getPermisos():String
++prettyPrint():String
+<<abstract>>#decoracion():String
+}
+
+class NombreDecorador extends FileDecorator{
++<<create>>NombreDecorador(component:FileComponent2)
+#decoracion():String
+}
+class FechaCreacionDecorador extends FileDecorator{
++<<create>>FechaCreacionDecorator(component:FileComponent)
+#decoracion():String
+}
+class FechaModificacionDecorador extends FileDecorator{
++<<create>>FechaModificacionDecorator(component:FileComponent)
+#decoracion():String
+}
+class ExtensionDecorador extends FileDecorator{
++<<create>>ExtensionDecorator(component:FileComponent)
+#decoracion():String
+}
+class TamanoDecorador extends FileDecorator{
++<<create>>TamanoDecorator(component:FileComponent)
+#decoracion():String
+}
+class PermisosDecorator extends FileDecorator{
++<<create>>PermisosDecorator(component:FileComponent)
+#decoracion():String
+}
+
+
+@enduml

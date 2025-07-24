@@ -1,0 +1,39 @@
+@startuml
+class Mensajero {
++enviar(mensaje:String)
++recibir(mensaje:String)
+}
+interface Cifrador{
++cifrar(mensaje:String):String
++descifrar(mensaje:String):String
+}
+
+class FeistelAdapter implements Cifrador{
+-key:String
++<<create>>FeistelAdapter(key:String)
++cifrar(mensaje:String)
++descifrar(mensaje:String)
+}
+
+class RC4Adapter implements Cifrador{
+-key:String
++<<create>>RC4Adapter(key:String)
++cifrar(mensaje:String):String
++descifrar(mensaje:String):String
+}
+
+class FeistelCipher{
++<<create>>FeistelCipher(key:String)
++encode(message:String):String
+}
+
+class RC4{
++encrypt(mensaje:String,key:String):String
++decript(mensaje:String,key:String):String
+}
+
+Mensajero "cifrador"-> Cifrador
+FeistelAdapter "feistel"--> FeistelCipher 
+RC4Adapter "rc4" --> RC4 
+ 
+@enduml

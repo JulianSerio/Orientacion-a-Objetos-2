@@ -1,0 +1,54 @@
+@startuml
+class Dispositivo{
++send(data:String):String
++configurarCRC(estra:Strategy)
++conectarCon(conn:Connection)
+}
+
+interface Strategy{
++crcFor(data:String):Integer
+}
+
+class CRC32_Calculator implements Strategy{
++crcFor(data:String):Integer
+}
+class CRC16_Calculator implements Strategy{
++crcFor(data:String):Integer
+}
+
+class Ringer{
++ring()
+}
+
+class Display{
++showBanner(img:String):String
+}
+
+interface Connection{
++sendData(data:String, crc:Integer):String
++pict():String
+} 
+
+class WifiConn implements Connection{
+-pict:String
++sendData(data:String,crc:Integer):String
++pict():String
+}
+class 4GConnAdapter implements Connection{
+-pict:String
++sendData(data:String,crc:Integer):String
++pict():String
+}
+
+class 4GConnection {
+-symb:String
++transmit(data:String, crc:Integer):String
++symb():String
+}
+
+4GConnAdapter "4GConnection" --> 4GConnection
+Dispositivo "ringer" --> Ringer
+Dispositivo "display" -> Display
+Dispositivo "crcCalculator" --> Strategy
+Dispositivo "connection" --> Connection
+@enduml

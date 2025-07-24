@@ -1,0 +1,94 @@
+@startuml
+class Empresa{
+-build:PresupuestoBuilder
++<<create>>Empresa()
++solicitarPresupuesto(nombre:String):Presupuesto
++setBuilder(presupuesto:PresupuestoBuilder)
+}
+
+interface PresupuestoBuilder{
++buildPersona(fecha:LocalDate,nombre:String)
++buildProcesador()
++buildRAM()
++buildDisco()
++buildGPU()
++buildGabinete()
++getResultado():Presupuesto
+}
+
+class Basico implements PresupuestoBuilder{
+-presupuesto:Presupuesto
++<<create>>Basico()
++buildPersona(fecha:LocalDate,nombre:String)
++buildProcesador()
++buildRAM()
++buildDisco()
++buildGPU()
++buildGabinete()
++getResultado():Presupuesto
+}
+
+class Intermedio implements PresupuestoBuilder{
+-presupuesto:Presupuesto
++<<create>>Intermedio()
++buildPersona(fecha:LocalDate,nombre:String)
++buildProcesador()
++buildRAM()
++buildDisco()
++buildGPU()
++buildGabinete()
++getResultado():Presupuesto
+}
+
+class Gamer implements PresupuestoBuilder{
+-presupuesto:Presupuesto
++<<create>>Gamer()
++buildPersona(fecha:LocalDate,nombre:String)
++buildProcesador()
++buildRAM()
++buildDisco()
++buildGPU()
++buildGabinete()
++getResultado():Presupuesto
+}
+
+class Presupuesto{
+
+-nombre:String
+-fechaSolicitud:LocalDate
+-cpu:CPU
+-gpu:GPU
+-ram:RAM
+-disco:Disco
+-gabinete:Gabinete
+-componentes:Componente[*]
++<<create>>Presupuesto()
++setNombre(nombre:String)
++setFecha(fecha:LocalDate)
++setRAM(precio:Real,RAM:String,consumo:Integer)
++setCPU(precio:Real,CPU:String,consumo:Integer)
++setGPU(precio:Real,GPU:String,consumo:Integer)
++setDisco(precio:Real,disco:String,consumo:Integer)
++setGabinete(precio:Real,gabinete:String,potenciaFuente:Real)
++consumoTotal():Integer
++precioTotal():Real
+}
+
+class Componente{
+-precio:Real
+-nombre:String
+-consumo:Integer
++<<create>>Componente(nombre:String,precio:String,consumo:Integer)
++getPrecio():Real
++getNombre():String
++getConsumo():String
+}
+
+
+Gamer "presupuesto"-->Presupuesto 
+Basico "presupuesto"-->Presupuesto 
+Intermedio "presupuesto"-->Presupuesto 
+Empresa "builder" -> PresupuestoBuilder
+Presupuesto "componentes *"-> Componente
+
+@enduml

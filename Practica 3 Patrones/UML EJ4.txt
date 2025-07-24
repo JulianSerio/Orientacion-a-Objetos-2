@@ -1,0 +1,61 @@
+@startuml
+class ToDoItem{
+-nombre:String
+-comentario:String
+-inicio:Instant
+-fin:Instant
++<<create>> ToDoItem(name:String)
++start()
++togglePause()
++finish()
++workedTime():Duration
++addComment(comment:String)
++setEstado(estado:Estado)
++iniciarContador()
++finalizarContador()
++contadorHastaInicioFin()
++contadorHastaAhora()
+}
+
+interface Estado{
++start(tarea:ToDoItem)
++togglePause(tarea:ToDoItem)
++finish(tarea:ToDoItem)
++workedTime(tarea:ToDoItem):Duration
++addComment(tarea:ToDoItem,comentario:String)
+}
+
+class Pendiente implements Estado{
++start(tarea:ToDoItem)
++togglePause(tarea:ToDoItem)
++finish(tarea:ToDoItem)
++workedTime(tarea:ToDoItem):Duration
++addComment(tarea:ToDoItem,comentario:String)  
+}
+
+class EnProgreso implements Estado{
++start(tarea:ToDoItem)
++togglePause(tarea:ToDoItem)
++finish(tarea:ToDoItem)
++workedTime(tarea:ToDoItem):Duration
++addComment(tarea:ToDoItem,comentario:String)
+}
+
+class Pausada implements Estado{
++start(tarea:ToDoItem)
++togglePause(tarea:ToDoItem)
++finish(tarea:ToDoItem)
++workedTime(tarea:ToDoItem):Duration
++addComment(tarea:ToDoItem,comentario:String)
+}
+
+class Terminada implements Estado{
++start(tarea:ToDoItem)
++togglePause(tarea:ToDoItem)
++finish(tarea:ToDoItem)
++workedTime(tarea:ToDoItem):Duration
++addComment(tarea:ToDoItem,comentario:String)
+}
+
+ToDoItem "estado" --> Estado
+@enduml
